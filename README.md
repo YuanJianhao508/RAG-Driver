@@ -10,4 +10,4 @@ Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations w
 **RAG-Driver** is a Multi-Modal Large Language Model with Retrieval-augmented In-context Learning capacity designed for generalisable and explainable end-to-end driving with strong zeroshot generalisation capacity.
 
 ## News <a name="highlight"></a>
-Code will be released soon
+Codes and models will be released soon
