@@ -1,5 +1,5 @@
 # RAG-Driver
-Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations with Retrieval-Augmented In-Context Multi-Modal Large Language Model Learning".
+Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations with Retrieval-Augmented In-Context Learning in Multi-Modal Large Language Model ".
 
 
 ## Highlights <a name="highlight"></a>
