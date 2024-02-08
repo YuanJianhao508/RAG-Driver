@@ -7,7 +7,7 @@ Official GitHub repository for "LingoQA: Video Question Answering for Autonomous
   <img src="assets/RAGDriver_Teaser.png">
 </p>
 
-**RAG-Driver** is a Multi-Modal Large Language Model with Retrieval-augmented In-context Learning capacity designed for generalisable and explainable end-to-end driving
+**RAG-Driver** is a Multi-Modal Large Language Model with Retrieval-augmented In-context Learning capacity designed for generalisable and explainable end-to-end driving with strong zeroshot generalisation capacity.
 
 ## News <a name="highlight"></a>
 Code will be released soon
