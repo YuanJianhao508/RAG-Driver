@@ -146,7 +146,7 @@
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
-        <source src="static/videos/Demo.mp4"
+        <source src="static/videos/demo.mp4"
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
@@ -182,7 +182,7 @@
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/RAGDriver_Teaser.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
           <strong>Right:</strong>: In natural language, our system describes and justifies actions taken by the vehicle, as well as inferring the
           driving action in the form of numerical control signals (speed, and steering angle). For this, we use a unified perception and
@@ -196,23 +196,16 @@
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/RAGDriver_main.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+          <strong>RAG-Driver Overview</strong>: Given a query comprising a video of the current driving scenario and its corresponding control
+          signal, the process starts with the input being fed into a Retrieval Engine. It searches within a memory database for driving
+          experiences that are similar to the current scenario, thereby providing relevant in-context learning samples. Subsequently, a
+          Multi-Modal Large Language Model (MLLM) processes both the current query and the retrieved in-context learning samples.
+          Based on high-level task instructions, the model engages in various prediction tasks: Action Explanation, Action Justification,
+          and Next Control Signal Prediction.
         </h2>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
       </h2>
     </div>
   </div>
