@@ -20,11 +20,13 @@
   <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="keywords" content="Autonomous driving, Multi-modal Language
+  Model, End-to-end Driving, In-Context Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
+  <title>RAG-Driver: Generalisable Driving Explanations with Retrieval-Augmented In-Context
+    Learning in Multi-Modal Large Language Model</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -52,21 +54,36 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">RAG-Driver: Generalisable Driving Explanations with Retrieval-Augmented In-Context
+              Learning in Multi-Modal Large Language Model</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+                <a href="https://yuanjianhao508.github.io/" target="_blank">Jianhao Yuan</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://kevin-ssy.github.io/" target="_blank">Shuyang Sun</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://danielomeiza.github.io/" target="_blank">Daniel Omeiza</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.bozhao.me/" target="_blank">Bo Zhao</a>
+              </span>
+              <span class="author-block">
+                <a href="https://ori.ox.ac.uk/people/paul-newman/" target="_blank">Paul Newman</a>
+              </span>
+              <span class="author-block">
+                <a href="https://eng.ox.ac.uk/people/lars-kunze/" target="_blank">Lars Kunze</a>
+              </span>
+              <span class="author-block">
+                <a href="https://mttgdd.github.io/" target="_blank">Matthew Gadd</a>
+              </span>
+            </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                    <span class="author-block">University of Oxford, Beijing Academy of Artificial Intelligence</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
                   </div>
 
                   <div class="column has-text-centered">
@@ -83,7 +100,7 @@
                     </span>
 
                     <!-- Supplementary PDF link -->
-                    <span class="link-block">
+                    <!-- <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -91,11 +108,11 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    <a href="https://github.com/YuanJianhao508/RAG-Driver" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -129,11 +146,11 @@
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
+        <source src="static/videos/Demo.mp4"
         type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        RAG-Driver is a Multi-Modal Large Language Model with Retrieval-augmented In-context Learning capacity designed for generalisable and explainable end-to-end driving with strong zeroshot generalisation capacity.
       </h2>
     </div>
   </div>
@@ -147,8 +164,8 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+          <p>  
+          We need to trust robots that use often opaque AI methods. They need to explain themselves to us, and we need to trust their explanation. In this regard, explainability plays a critical role in trustworthy autonomous decision-making to foster transparency and acceptance among end users, especially in complex autonomous driving. Recent advancements in Multi-Modal Large Language models (MLLMs) have shown promising potential in enhancing the explainability as a driving agent producing control predictions along with natural language explanations. However, severe data scarcity due to expensive annotation costs and significant domain gaps between different datasets makes the development of a robust and generalisable system an extremely challenging task. Moreover, the prohibitively expensive training requirements of MLLM and the unsolved problem of catastrophic forgetting further limit their generalisability post-deployment.To address these challenges, we present RAG-Driver, a novel retrieval-augmented multi-modal large language model that leverages in-context learning for high-performance, explainable, and generalisable autonomous driving. By grounding in retrieved expert demonstration, we empirically validate that RAG-Driver achieves state-of-the-art performance in producing driving action explanations, justifications, and control signal prediction. More importantly, it exhibits exceptional zero-shot generalisation capabilities to unseen environments without further training endeavours.
           </p>
         </div>
       </div>
@@ -167,7 +184,14 @@
         <!-- Your image here -->
         <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          First image description.
+          <strong>Right:</strong>: In natural language, our system describes and justifies actions taken by the vehicle, as well as inferring the
+          driving action in the form of numerical control signals (speed, and steering angle). For this, we use a unified perception and
+          planning module through a Multi-modal Large Language Model. Our core contribution is a retrieval mechanism to search
+          driving scenarios similar to the current condition and use these to augment the current predictions through In-Context Learning.
+          This leads to better overall description and prediction and is more generalisable in new deployment domains. <strong>Left</strong>: Specialist
+          and generalist baselines in in-distribution and out-of-distribution generalisation settings (horizontal axis).
+          Our methods achieve better performance compared with all of the baselines, with a significant margin driving action explanation
+          and justification tasks under CIDEr measure.
         </h2>
       </div>
       <div class="item">
