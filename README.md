@@ -1,7 +1,7 @@
 # RAG-Driver
 [Arxiv](https://arxiv.org/abs/2402.10828) [Project Page](https://yuanjianhao508.github.io/RAG-Driver/)
 
-Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations with Retrieval-Augmented In-Context Learning in Multi-Modal Large Language Model ".
+Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations with Retrieval-Augmented In-Context Learning in Multi-Modal Large Language Model " accepted by Robotics: Science and Systems (RSS) 2024.
 
 
 ## Highlights <a name="highlight"></a>
