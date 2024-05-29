@@ -12,8 +12,7 @@ Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations w
 **RAG-Driver** is a Multi-Modal Large Language Model with Retrieval-augmented In-context Learning capacity designed for generalisable and explainable end-to-end driving with strong zeroshot generalisation capacity.
 
 ## News <a name="highlight"></a>
-## 📰 News
-* **[2024.05.27]**  Code update is in Progress, this repo is under active maintenance. 
+* **[2024.05.27]**  Code update is in Progress, this repo is under active maintenance! 
 
 
 ## TODO List
@@ -52,6 +51,13 @@ bash ./scripts/finetune.sh
 - Change the batch size '--per_device_train_batch_size' and gradient accumulation step '--gradient_accumulation_steps' based on the number of gpu available, please ensure the effective batch size (i.e. --per_device_train_batch_size * gradient accumulation step * number of gpus) equals '128'.
 
 
+
+### Evaluation
+```bash
+bash ./scripts/batch_inference.sh
+```
+- Specify path to trained model in 'MODEL_PATH'
+
 ## Citations
 If you find our paper and code useful in your research, please consider citing:
 ```BibTeX
@@ -63,6 +69,8 @@ If you find our paper and code useful in your research, please consider citing:
 }
 }
 ```
+
+
 
 ## Acknowledgement
 This repo is built on [Video-LLaVA](https://github.com/haotian-liu/LLaVA) and [ADAPT](https://github.com/jxbbb/ADAPT). We thank all the authors for their open-sourced codebase. 
