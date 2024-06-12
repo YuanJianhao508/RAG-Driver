@@ -74,4 +74,4 @@ If you find our paper and code useful in your research, please consider citing:
 
 
 ## Acknowledgement
-This repo is built on [Video-LLaVA](https://github.com/haotian-liu/LLaVA) and [ADAPT](https://github.com/jxbbb/ADAPT). We thank all the authors for their open-sourced codebase. 
+This repo is built on [Video-LLaVA](https://github.com/haotian-liu/LLaVA), [ADAPT](https://github.com/jxbbb/ADAPT), and [BDDX](https://github.com/JinkyuKimUCB/BDD-X-dataset). We thank all the authors for their open-sourced codebase and data!
