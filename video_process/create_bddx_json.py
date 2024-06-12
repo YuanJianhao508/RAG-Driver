@@ -5,11 +5,10 @@ from tqdm import tqdm
 import random
 import math
 
-def radian_to_degree(radian):
-    return radian * (180 / math.pi)
 
 def uniform_sample(lst, num_samples):
     sample = lst[::4]
+    # sample = [round(float(s),2) for s in sample]
     sample = [round(s,2) for s in sample]
     return sample
 
@@ -32,7 +31,6 @@ def random_subset(sample_list):
 def get_car_info(car_info, predict_cs=False):
     speed = uniform_sample(car_info['speed'],8)
     curvature = uniform_sample(car_info['curvature'],8)
-    # curvature = [radian_to_degree(ele) for ele in curvature]
     # print(curvature)
     acceleration = uniform_sample(car_info['acceleration'],8)
     course = uniform_sample(car_info['course'],8)
@@ -59,14 +57,14 @@ def main(split):
     question_3 = '''Predict the control signal for next frame.'''
     control_signal = True
     # RAG ICL
-    rag = True
+    rag = False
     strategy = 'hybird'
-    if split == 'train':
-        match_path = f"../retrieval/BDDX_RAG_{strategy}_vidmatch_train.json"
-        id_info_path = "../retrieval/bddx_id_info_match.json"
-    elif split == 'test':
-        match_path = f"../retrieval/BDDX_RAG_{strategy}_vidmatch_test.json"
-        id_info_path = "../retrieval/bddx_id_info_match.json"
+    # strategy = 'visual'
+
+    # match_path = f"../retrieval/BDDX_RAG_{strategy}_vpmatch_t9.json"
+    match_path = f"../retrieval/BDDX_RAG_tuned_vpmatch_t13.json"
+    id_info_path = "../retrieval/bddx_vpath_info_match.json"
+
         
     if rag:
         with open(match_path,"r") as fm:
@@ -90,25 +88,25 @@ def main(split):
                 # print(conversation)
                 action, justification = conversation[0]['action'], conversation[1]['justification']
                 # print(car_info)
+                vk = video_path.split("/",5)[-1]
                 if control_signal and rag:
                     # RAG 
-                    try:
-                        matched_ids = match_dict[idx]
-                    except:
-                        matched_ids = None
+
+                    matched_ids = match_dict[vk]
+                    matched_samples = [id_info_match[sid] for sid in matched_ids]
+                    if len(matched_samples) != 2:
+                        raise NameError
                         
-                    if matched_ids is not None:
-                        matched_samples = [id_info_match[sid] for sid in matched_ids]
-                        # matched_samples = random_subset(matched_samples)
-                        icl_context = "Here are also some historical driving experience for your reference:"
-                        for icl_id, sample in enumerate(matched_samples):
-                            # sample = sample.replace("<video>","")
-                            icl_context += f"{icl_id}:{sample}\n"
-                        icl_context += "*" * 60
-                        
-                    else:
-                        icl_context = "Here are also some historical driving experience for your reference: No Past Experience"
-                        icl_context += "*" * 60
+                    # matched_samples = random_subset(matched_samples)
+                    icl_context = "Here are also some historical driving experience and corresponding question answering for your reference:"
+                    for icl_id, sample in enumerate(matched_samples):
+                        # sample = sample.replace("<video>","")
+                        icl_context += f"Experience {icl_id}:{sample}\n"
+                    icl_context += "*" * 60
+                    
+                    # else:
+                    #     icl_context = "Here are also some historical driving experience for your reference: No Past Experience"
+                    #     icl_context += "*" * 60
 
                     # Context
                     context,final_cs = get_car_info(car_info,predict_cs)
@@ -132,6 +130,26 @@ def main(split):
                             {'from':'gpt','value':f'{justification}'}
                         ]
                     
+                    
+                elif control_signal and not rag:
+                    
+                    context,final_cs = get_car_info(car_info,predict_cs)
+                    if predict_cs:
+                        new_conversation = [    
+                            {'from':'human','value':f'{context}\n{question_1}'},
+                            {'from':'gpt','value':f'{action}'},
+                            {'from':'human','value':f'{question_2}'},
+                            {'from':'gpt','value':f'{justification}'},
+                            {'from':'human','value':f'{question_3}'},
+                            {'from':'gpt','value':f'{final_cs}'}
+                        ]      
+                    else:
+                        new_conversation = [    
+                            {'from':'human','value':f'{context}\n{question_1}'},
+                            {'from':'gpt','value':f'{action}'},
+                            {'from':'human','value':f'{question_2}'},
+                            {'from':'gpt','value':f'{justification}'}
+                        ]                         
                 
                 else:
                     new_conversation = [
@@ -140,25 +158,35 @@ def main(split):
                         {'from':'human','value':f'{question_2}'},
                         {'from':'gpt','value':f'{justification}'}
                     ]
-                video_path = video_path.split("/",5)[-1]
+                video_path = video_path.split("/",1)[-1]
+                if rag:
+                    rag_path = match_dict[video_path]
+                    all_video_path = rag_path + [video_path]
+                else:
+                    all_video_path = [video_path]
+                
                 info_dict = {
                     "id": f"{idx}",
-                    "video": f"{video_path}",
+                    "video": all_video_path,
                     "conversations": new_conversation
                 }
                 new_info_lis.append(info_dict)
+                # break
+
+    
     
     
     sp = "train" if split == "train" else "eval"
-    out_dir ="./final_conv_hybrid"
+    out_dir ="./conv_base"
     os.makedirs(out_dir,exist_ok=True)
     out_path = f'{out_dir}/conversation_bddx_{sp}.json'
     
+    # if split == 'train':
+    #     with open (f'{out_dir}/conversation_bddx_eval.json','r') as ft:
+    #         de = json.load(ft)
+    #     des = random.sample(de, 256)
+    #     new_info_lis += des
     
-    with open (f'{out_dir}/conversation_bddx_eval.json','r') as ft:
-        de = json.load(ft)
-    des = random.sample(de, 256)
-    new_info_lis += des
     
     with open(out_path, 'w') as f:
         json.dump(new_info_lis, f)

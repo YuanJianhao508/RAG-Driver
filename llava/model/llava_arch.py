@@ -131,10 +131,10 @@ class LlavaMetaForCausalLM(ABC):
 
     def encode_videos(self, videos):
         video_features = self.get_model().get_video_tower()(videos)
-        print("1111",video_features.shape)
+
         video_features = self.get_model().mm_projector(video_features)
-        print("2222",video_features.shape)
-        import pdb; pdb.set_trace()
+
+        # import pdb; pdb.set_trace()
         return video_features
 
     def prepare_inputs_labels_for_multimodal(
@@ -149,37 +149,30 @@ class LlavaMetaForCausalLM(ABC):
         Xs, keys = X_modalities
         all_tower = self.get_all_tower(set(keys)) if len(keys) > 0 else None
         
-        # print(2.5)
         if all_tower is None or X_modalities[0][0] is None or input_ids.shape[1] == 1:
             if past_key_values is not None and all_tower is not None and Xs is not None and input_ids.shape[1] == 1:
                 attention_mask = torch.ones((attention_mask.shape[0], past_key_values[-1][-1].shape[-2] + 1), dtype=attention_mask.dtype, device=attention_mask.device)
             return input_ids, attention_mask, past_key_values, None, labels
 
 
-        # print(keys)
-        # X_features = [getattr(self, f'encode_{key}s')(X.unsqueeze(0)) for X, key in zip(Xs, keys)]  # expand to get batchsize
-        # X_features = [x.flatten(0, 1) for x in X_features]
-        # print(X_features[0].size())
-        # import pdb; pdb.set_trace()
-        
         X_features = []
         # Xs = [Xs]
         
         for X, key in zip(Xs, keys):
-            stackX = torch.stack(X, dim=0).view(3,3,8,224,224)
-            # stackX = torch.stack(X, dim=0)
+            # stackX = torch.stack(X, dim=0).view(3,3,8,224,224)
+            stackX = torch.stack(X, dim=0)
             # print(stackX.shape)
             
             encoded_feature = getattr(self, f'encode_{key}s')(stackX)
-            print("Feature Dim", encoded_feature.shape)
+            # print("Feature Dim", encoded_feature.shape)
             X_features.append(encoded_feature)
             
-        # flattened_X_features = []
-        # for x in X_features:
-        #     flattened_feature = x.flatten(0, 1)
-        #     flattened_X_features.append(flattened_feature)
+        flattened_X_features = []
+        for x in X_features:
+            flattened_feature = x.flatten(0, 1)
+            flattened_X_features.append(flattened_feature)
 
-        # X_features = flattened_X_features
+        X_features = flattened_X_features
 
 
         new_input_embeds = []
@@ -244,14 +237,17 @@ class LlavaMetaForCausalLM(ABC):
                 if labels is not None:
                     cur_new_labels.append(cur_labels)
                     
-            for i in cur_new_input_embeds:
-                print(i.size())
+            # for i in cur_new_input_embeds:
+            #     print(i.size())
+                
+            # import pdb; pdb.set_trace()
             cur_new_input_embeds = [x.to(device=self.device) for x in cur_new_input_embeds] 
             cur_new_input_embeds = torch.cat(cur_new_input_embeds, dim=0)
             
             
             
             new_input_embeds.append(cur_new_input_embeds)
+            
             if labels is not None:
                 cur_new_labels = torch.cat(cur_new_labels, dim=0)
                 new_labels.append(cur_new_labels)
