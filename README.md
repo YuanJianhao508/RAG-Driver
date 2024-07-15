@@ -57,6 +57,18 @@ bash ./scripts/finetune.sh
 bash ./scripts/batch_inference.sh
 ```
 - Specify path to trained model in 'MODEL_PATH'
+- Specify path to evaluation file path in '--input'
+- Specify path to output prediction file path in '--output'
+
+#### Evaluate Caption Performance
+Please download the following [files](https://drive.google.com/drive/folders/1LLoEyIZ2BZzTP_h93z93QAhO0Hq5_K9r) (open-sourced by ADAPT), and extract all files under folder './evalcap' .
+
+Then, run 
+'''
+python evaluate.py
+'''
+with the prediction output file version stored in parameter 'version' in script.
+
 
 ## Citations
 If you find our paper and code useful in your research, please consider citing:
