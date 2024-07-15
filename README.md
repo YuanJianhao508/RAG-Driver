@@ -18,6 +18,7 @@ Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations w
 
 ## TODO List
 - [x] Uploading the processed version of BDDX.
+- [x] Uploading evaluation pipeline
 - [ ] Uploading the model checkpoint.
 - [ ] Releasing Spoken-SAX dataset.
 - [ ] further cleaning of retrieval engine codebase
