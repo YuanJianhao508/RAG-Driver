@@ -12,11 +12,12 @@ Official GitHub repository for "RAG-Driver: Generalisable Driving Explanations w
 **RAG-Driver** is a Multi-Modal Large Language Model with Retrieval-augmented In-context Learning capacity designed for generalisable and explainable end-to-end driving with strong zeroshot generalisation capacity.
 
 ## News <a name="highlight"></a>
+* **[2024.06.13]**  Processed Version of BDD-X is available from [here](https://drive.google.com/file/d/14a3QTkWRelAZs-kW_2U5tjYcAm2l8VbF/view?usp=sharing)
 * **[2024.05.29]**  Code update is in Progress, this repo is under active maintenance! Please wait for a few moments!
 
 
 ## TODO List
-- [ ] Uploading the processed version of BDDX.
+- [x] Uploading the processed version of BDDX.
 - [ ] Uploading the model checkpoint.
 - [ ] Releasing Spoken-SAX dataset.
 - [ ] further cleaning of retrieval engine codebase
@@ -37,7 +38,7 @@ pip install --upgrade pip  # enable PEP 660 support
 pip install -e .
 pip install -e ".[train]"
 pip install flash-attn --no-build-isolation
-pip install decord opencv-python git+https://github.com/facebookresearch/pytorchvideo.git@28fe037d212663c6a24f373b94cc5d478c8c1a1d
+pip install decord opencv-python git+https://github.com/facebookresearch/pytorchvideo.git@28fe037d212663c6a24f373b94cc5d478c8c1a1d tensorboardX
 ```
 
 ### Instruction Tuning on BDD-X dataset
@@ -47,7 +48,7 @@ bash ./scripts/finetune.sh
 ```
 
 - Download pre-trained Video-LLaVA LLM and projector checkpoint from [here](https://huggingface.co/LanguageBind/Video-LLaVA-7B) and [here](https://huggingface.co/LanguageBind/Video-LLaVA-Pretrain-7B) and specify path in '--model_name_or_path' and '--pretrain_mm_mlp_adapter'.
-- Download pre-trained LanguageBind encoder from [here](https://huggingface.co/LanguageBind/LanguageBind_Video_merge) and specify path in '--video_tower'.
+- Download pre-trained LanguageBind encoder from [here](https://huggingface.co/LanguageBind/LanguageBind_Video_merge) and [here](https://huggingface.co/LanguageBind/LanguageBind_Image) and specify path in '--video_tower' and '--image_tower'.
 - Change the batch size '--per_device_train_batch_size' and gradient accumulation step '--gradient_accumulation_steps' based on the number of gpu available, please ensure the effective batch size (i.e. --per_device_train_batch_size * gradient accumulation step * number of gpus) equals '128'.
 
 
@@ -85,4 +86,4 @@ If you find our paper and code useful in your research, please consider citing:
 
 
 ## Acknowledgement
-This repo is built on [Video-LLaVA](https://github.com/haotian-liu/LLaVA) and [ADAPT](https://github.com/jxbbb/ADAPT). We thank all the authors for their open-sourced codebase. 
+This repo is built on [Video-LLaVA](https://github.com/haotian-liu/LLaVA), [ADAPT](https://github.com/jxbbb/ADAPT), and [BDDX](https://github.com/JinkyuKimUCB/BDD-X-dataset). We thank all the authors for their open-sourced codebase and data!
